@@ -1,0 +1,40 @@
+// Quick Sort
+// Time Complexity: O(n log n)
+// Space Complexity: O(log n)
+
+public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pivot_location = partition(arr, low, high);
+            quickSort(arr, low, pivot_location - 1);
+            quickSort(arr, pivot_location + 1, high);
+        }
+    }
+    public static int partition(int[] arr, int low, int high) {
+            int pivot = arr[high];
+            int leftWall = low - 1;
+            for (int i = low; i < high; i++) {
+                if (arr[i] <= pivot) {
+                    leftWall++;
+                    int tmp = arr[leftWall];
+                    arr[leftWall] = arr[i];
+                    arr[i] = tmp;
+            }
+        }
+        int tmp = arr[leftWall + 1];
+        arr[leftWall + 1] = arr[high];
+        arr[high] = tmp;
+        return leftWall + 1;
+    }
+    //test case
+    public static void main(String[] args) {
+        int[] array1 = {6, 8, 1, 5, 3, 9, 7};
+        quickSort(array1, 0, array1.length - 1);
+        System.out.println(java.util.Arrays.toString(array1));
+
+        int[] array2 = {142, 86, 11, 34, 53, 43};
+        quickSort(array2, 0, array2.length - 1);
+        System.out.println(java.util.Arrays.toString(array2));
+    }
+}
+
